@@ -1,0 +1,8 @@
+#The Final Document has PDF and Word format, the contents of them are same
+
+#The Test Results record the components tests and their results. 
+ Those results are also included in the Final Document together with explanations.
+
+#Source code contains the source codes for Platform and Godot 3.0 engine installation file
+
+#To running the game without Godot engine, just click the Platform.exe in this directory
