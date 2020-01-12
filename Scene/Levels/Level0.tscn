@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scene/Levels/Level0.gd" type="Script" id=1]
+[ext_resource path="res://Image/BG/map.png" type="Texture" id=2]
+[ext_resource path="res://Monster/Test_Monster.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/Test_Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scene/Levels/monsterAttack.gd" type="Script" id=6]
+[ext_resource path="res://Scene/Levels/dead.gd" type="Script" id=7]
+
+[node name="Level0" type="Node2D"]
+script = ExtResource( 1 )
+monster_count = 4
+
+[node name="map" type="TextureRect" parent="."]
+margin_left = -55.6508
+margin_top = -55.6508
+margin_right = 2424.35
+margin_bottom = 1692.35
+rect_scale = Vector2( 0.465415, 0.418324 )
+texture = ExtResource( 2 )
+
+[node name="Start_point" type="Position2D" parent="."]
+position = Vector2( 387.672, 292.765 )
+
+[node name="Test_Monster" parent="." instance=ExtResource( 3 )]
+position = Vector2( 231.069, 185.644 )
+scale = Vector2( 0.063982, 0.0527232 )
+move_speed = 50
+
+[node name="Test_Monster2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 441.248, 96.6089 )
+scale = Vector2( 0.182484, 0.172301 )
+move_speed = 20
+
+[node name="Test_Monster3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 669.623, 94.1386 )
+scale = Vector2( 0.0674637, 0.0774993 )
+move_speed = 60
+
+[node name="Test_Monster4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 750.411, 276.382 )
+scale = Vector2( 0.0505258, 0.0579065 )
+move_speed = 60
+
+[node name="Test_Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 498.232, 310.314 )
+scale = Vector2( 0.0810736, 0.0810736 )
+move_speed = 200
+
+[node name="Camera2D" type="Camera2D" parent="Test_Player"]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+
+[node name="HUD" parent="Test_Player/Camera2D" instance=ExtResource( 5 )]
+
+[node name="monsterMove" type="Timer" parent="."]
+autostart = true
+
+[node name="monsterAttack" type="Timer" parent="."]
+script = ExtResource( 6 )
+
+[node name="dead" type="Timer" parent="."]
+wait_time = 1.5
+script = ExtResource( 7 )
+[connection signal="playerDead" from="." to="dead" method="_on_Level0_playerDead"]
+[connection signal="playerDead" from="." to="Test_Player" method="_on_Level0_playerDead"]
+[connection signal="playerLeave" from="." to="monsterAttack" method="_on_Level0_playerLeave"]
+[connection signal="playerStick" from="." to="Test_Player" method="_on_Level0_playerStick"]
+[connection signal="updateInfo" from="." to="Test_Player/Camera2D/HUD" method="_on_Level0_updateInfo"]
+[connection signal="area_entered" from="Test_Monster" to="." method="_on_Test_Monster_area_entered"]
+[connection signal="area_exited" from="Test_Monster" to="." method="_on_Test_Monster_area_exited"]
+[connection signal="claimSelf" from="Test_Monster" to="." method="_on_Test_Monster_claimSelf"]
+[connection signal="prepareAttack" from="Test_Monster" to="monsterAttack" method="_on_Test_Monster_prepareAttack"]
+[connection signal="area_entered" from="Test_Monster2" to="." method="_on_Test_Monster_area_entered"]
+[connection signal="area_exited" from="Test_Monster2" to="." method="_on_Test_Monster_area_exited"]
+[connection signal="claimSelf" from="Test_Monster2" to="." method="_on_Test_Monster_claimSelf"]
+[connection signal="prepareAttack" from="Test_Monster2" to="monsterAttack" method="_on_Test_Monster_prepareAttack"]
+[connection signal="area_entered" from="Test_Monster3" to="." method="_on_Test_Monster_area_entered"]
+[connection signal="area_exited" from="Test_Monster3" to="." method="_on_Test_Monster_area_exited"]
+[connection signal="claimSelf" from="Test_Monster3" to="." method="_on_Test_Monster_claimSelf"]
+[connection signal="prepareAttack" from="Test_Monster3" to="monsterAttack" method="_on_Test_Monster_prepareAttack"]
+[connection signal="area_entered" from="Test_Monster4" to="." method="_on_Test_Monster_area_entered"]
+[connection signal="area_exited" from="Test_Monster4" to="." method="_on_Test_Monster_area_exited"]
+[connection signal="claimSelf" from="Test_Monster4" to="." method="_on_Test_Monster_claimSelf"]
+[connection signal="prepareAttack" from="Test_Monster4" to="monsterAttack" method="_on_Test_Monster_prepareAttack"]
+[connection signal="attack" from="Test_Player" to="." method="_on_Test_Player_attack"]
+[connection signal="cd_1" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_cd_1"]
+[connection signal="cd_2" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_cd_2"]
+[connection signal="cd_3" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_cd_3"]
+[connection signal="cd_done_1" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_cd_done_1"]
+[connection signal="cd_done_2" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_cd_done_2"]
+[connection signal="cd_done_3" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_cd_done_3"]
+[connection signal="updateInfo" from="Test_Player" to="Test_Player/Camera2D/HUD" method="_on_Test_Player_updateInfo"]
+[connection signal="ready" from="Test_Player/Camera2D/HUD" to="Test_Player/Camera2D/HUD" method="_on_HUD_ready"]
+[connection signal="skill_1" from="Test_Player/Camera2D/HUD" to="Test_Player" method="_on_HUD_skill_1"]
+[connection signal="skill_2" from="Test_Player/Camera2D/HUD" to="Test_Player" method="_on_HUD_skill_2"]
+[connection signal="skill_3" from="Test_Player/Camera2D/HUD" to="Test_Player" method="_on_HUD_skill_3"]
+[connection signal="timeout" from="monsterMove" to="Test_Monster4" method="_on_monsterMove_timeout"]
+[connection signal="timeout" from="monsterMove" to="Test_Monster3" method="_on_monsterMove_timeout"]
+[connection signal="timeout" from="monsterMove" to="Test_Monster" method="_on_monsterMove_timeout"]
+[connection signal="timeout" from="monsterMove" to="Test_Monster2" method="_on_monsterMove_timeout"]
+[connection signal="timeout" from="monsterAttack" to="." method="_on_monsterAttack_timeout"]
+[connection signal="timeout" from="dead" to="." method="_on_dead_timeout"]

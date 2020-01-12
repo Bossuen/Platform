@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=1]
+[ext_resource path="res://Image/Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://HUD/Statu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Image/Skills/su.png" type="Texture" id=4]
+[ext_resource path="res://Image/Skills/au.png" type="Texture" id=5]
+[ext_resource path="res://Image/Skills/hu.png" type="Texture" id=6]
+[ext_resource path="res://Image/BG/Border.png" type="Texture" id=7]
+[ext_resource path="res://Image/Skills/cd.png" type="Texture" id=8]
+[ext_resource path="res://Image/BG/map.png" type="Texture" id=9]
+[ext_resource path="res://HUD/Shop.tscn" type="PackedScene" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="HP" type="Label" parent="."]
+margin_left = 30.9038
+margin_top = 17.124
+margin_right = 59.9038
+margin_bottom = 37.124
+rect_scale = Vector2( 1.99655, 2.04419 )
+custom_fonts/font = SubResource( 1 )
+text = "HP:"
+
+[node name="MP" type="Label" parent="."]
+margin_left = 24.9164
+margin_top = 58.4369
+margin_right = 57.9164
+margin_bottom = 78.4369
+rect_scale = Vector2( 1.99655, 2.04419 )
+custom_fonts/font = SubResource( 1 )
+text = "MP:"
+
+[node name="Name" type="Button" parent="."]
+margin_left = 21.3156
+margin_top = 546.585
+margin_right = 92.3156
+margin_bottom = 582.585
+text = "name"
+
+[node name="STATU" parent="." instance=ExtResource( 3 )]
+
+[node name="skill1" type="TextureRect" parent="."]
+margin_left = 287.423
+margin_top = 498.541
+margin_right = 2767.43
+margin_bottom = 2246.54
+rect_scale = Vector2( 0.0779387, 0.0705566 )
+texture = ExtResource( 4 )
+
+[node name="skill2" type="TextureRect" parent="."]
+margin_left = 336.209
+margin_top = 498.53
+margin_right = 2816.21
+margin_bottom = 2246.54
+rect_scale = Vector2( 0.0752556, 0.0706929 )
+texture = ExtResource( 5 )
+
+[node name="skill3" type="TextureRect" parent="."]
+margin_left = 385.455
+margin_top = 497.399
+margin_right = 2865.46
+margin_bottom = 2245.4
+rect_scale = Vector2( 0.0744883, 0.0728458 )
+texture = ExtResource( 6 )
+
+[node name="skillcooldown" type="HBoxContainer" parent="."]
+editor/display_folded = true
+margin_left = 363.428
+margin_top = 541.033
+margin_right = 6041.43
+margin_bottom = 1958.03
+rect_scale = Vector2( 0.0248031, 0.0321026 )
+
+[node name="skill1" type="TextureRect" parent="skillcooldown"]
+margin_right = 1890.0
+margin_bottom = 1417.0
+texture = ExtResource( 7 )
+
+[node name="skill2" type="TextureRect" parent="skillcooldown"]
+margin_left = 1894.0
+margin_right = 3784.0
+margin_bottom = 1417.0
+texture = ExtResource( 7 )
+
+[node name="skill3" type="TextureRect" parent="skillcooldown"]
+margin_left = 3788.0
+margin_right = 5678.0
+margin_bottom = 1417.0
+texture = ExtResource( 7 )
+
+[node name="cool1" type="TextureRect" parent="."]
+margin_left = 310.615
+margin_top = 519.247
+margin_right = 2790.62
+margin_bottom = 2267.25
+rect_scale = Vector2( 0.0626898, 0.0536156 )
+texture = ExtResource( 8 )
+
+[node name="cool2" type="TextureRect" parent="."]
+margin_left = 362.313
+margin_top = 522.795
+margin_right = 2842.31
+margin_bottom = 2270.8
+rect_scale = Vector2( 0.0583384, 0.0497807 )
+texture = ExtResource( 8 )
+
+[node name="cool3" type="TextureRect" parent="."]
+margin_left = 413.427
+margin_top = 525.223
+margin_right = 2893.43
+margin_bottom = 2273.22
+rect_scale = Vector2( 0.0545447, 0.0464297 )
+texture = ExtResource( 8 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 891.967
+margin_top = 548.476
+margin_right = 934.967
+margin_bottom = 568.476
+rect_scale = Vector2( 2.34265, 1.79019 )
+text = "MAP"
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 768.154
+margin_top = 547.743
+margin_right = 816.154
+margin_bottom = 567.743
+rect_scale = Vector2( 2.34265, 1.79019 )
+text = "SHOP"
+
+[node name="map" type="TextureButton" parent="."]
+modulate = Color( 1, 1, 0.290196, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 144.237
+margin_top = 45.8044
+margin_right = -132.763
+margin_bottom = -77.1956
+texture_normal = ExtResource( 9 )
+expand = true
+
+[node name="Shop" parent="." instance=ExtResource( 10 )]
+visible = false
+[connection signal="pressed" from="Name" to="STATU" method="_on_Name_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="Shop" method="_on_Button2_pressed"]
+[connection signal="unlock1" from="Shop" to="." method="_on_Shop_unlock1"]
+[connection signal="unlock2" from="Shop" to="." method="_on_Shop_unlock2"]
+[connection signal="unlock3" from="Shop" to="." method="_on_Shop_unlock3"]

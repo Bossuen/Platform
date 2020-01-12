@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://HUD/Shop.gd" type="Script" id=1]
+[ext_resource path="res://Image/BG/gRtJcW0BJleJMoPM6T-l.jpg" type="Texture" id=2]
+[ext_resource path="res://Image/Others/button.png" type="Texture" id=3]
+[ext_resource path="res://Image/Others/button_pressed.png" type="Texture" id=4]
+[ext_resource path="res://Image/Skills/su.png" type="Texture" id=5]
+[ext_resource path="res://Image/Skills/au.png" type="Texture" id=6]
+[ext_resource path="res://Image/Skills/hu.png" type="Texture" id=7]
+[ext_resource path="res://Image/Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 8 )
+
+[node name="Shop" type="Container"]
+margin_top = 1.62109
+margin_bottom = 1.62109
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 794.422
+margin_top = 5.80053
+margin_right = 814.422
+margin_bottom = 25.8005
+text = "X"
+
+[node name="shops" type="Container" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="shops"]
+margin_left = 211.634
+margin_top = 4.43213
+margin_right = 851.634
+margin_bottom = 644.432
+rect_scale = Vector2( 0.909774, 0.923067 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="shops"]
+margin_left = 579.606
+margin_top = 15.5666
+margin_right = 1170.61
+margin_bottom = 1085.57
+rect_scale = Vector2( 0.369126, 0.526246 )
+
+[node name="speed" type="TextureButton" parent="shops/VBoxContainer"]
+margin_right = 591.0
+margin_bottom = 354.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="att" type="TextureButton" parent="shops/VBoxContainer"]
+margin_top = 358.0
+margin_right = 591.0
+margin_bottom = 712.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="chun" type="TextureButton" parent="shops/VBoxContainer"]
+margin_top = 716.0
+margin_right = 591.0
+margin_bottom = 1070.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="VBoxContainer2" type="Node" parent="shops"]
+
+[node name="skill1" type="TextureRect" parent="shops/VBoxContainer2"]
+visible = false
+margin_left = 106.813
+margin_top = -84.7138
+margin_right = 2586.81
+margin_bottom = 1663.29
+rect_scale = Vector2( 0.221878, 0.221878 )
+texture = ExtResource( 5 )
+
+[node name="skill2" type="TextureRect" parent="shops/VBoxContainer2"]
+visible = false
+margin_left = 101.902
+margin_top = 87.1908
+margin_right = 2581.9
+margin_bottom = 1835.19
+rect_scale = Vector2( 0.224686, 0.224686 )
+texture = ExtResource( 6 )
+
+[node name="skill3" type="TextureRect" parent="shops/VBoxContainer2"]
+visible = false
+margin_left = 103.13
+margin_top = 275.056
+margin_right = 2583.13
+margin_bottom = 2023.06
+rect_scale = Vector2( 0.225028, 0.225028 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="shops"]
+margin_left = 593.606
+margin_top = 218.567
+margin_right = 1183.61
+margin_bottom = 279.567
+custom_fonts/font = SubResource( 1 )
+text = "10000"
+
+[node name="Label4" type="Label" parent="shops"]
+margin_left = 590.606
+margin_top = 409.567
+margin_right = 1180.61
+margin_bottom = 470.567
+custom_fonts/font = SubResource( 1 )
+text = "10000"
+
+[node name="Label5" type="Label" parent="shops"]
+margin_left = 592.606
+margin_top = 34.7726
+margin_right = 1182.61
+margin_bottom = 95.7726
+custom_fonts/font = SubResource( 1 )
+text = "10000"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="shops/VBoxContainer/speed" to="." method="_on_speed_pressed"]
+[connection signal="pressed" from="shops/VBoxContainer/att" to="." method="_on_att_pressed"]
+[connection signal="pressed" from="shops/VBoxContainer/chun" to="." method="_on_chun_pressed"]

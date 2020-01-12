@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scene/Operation/GetUserName.gd" type="Script" id=1]
+[ext_resource path="res://Image/BG/sky.png" type="Texture" id=2]
+[ext_resource path="res://Image/Fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Image/Others/button.png" type="Texture" id=4]
+[ext_resource path="res://Image/Others/button_pressed.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 3 )
+
+[node name="GetUserName" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0578
+margin_right = 1.05786
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.29236
+margin_bottom = -1.29236
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 171.465
+margin_top = 159.378
+margin_right = 888.465
+margin_bottom = 316.378
+custom_fonts/font = SubResource( 1 )
+text = "Please Type your Name
+"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 396.985
+margin_top = 343.808
+margin_right = 550.985
+margin_bottom = 392.808
+custom_fonts/font = SubResource( 2 )
+max_length = 7
+
+[node name="First" type="TextureButton" parent="."]
+margin_left = 573.0
+margin_top = 318.276
+margin_right = 1199.0
+margin_bottom = 759.276
+rect_scale = Vector2( 0.162545, 0.216203 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+
+[node name="Second" type="TextureButton" parent="."]
+margin_left = 574.093
+margin_top = 317.831
+margin_right = 638.093
+margin_bottom = 381.831
+rect_scale = Vector2( 0.18062, 0.226937 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+[connection signal="ready" from="." to="." method="_on_GetUserName_ready"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LineEdit_text_changed"]
+[connection signal="text_entered" from="LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="First" to="." method="_on_First_pressed"]
+[connection signal="pressed" from="Second" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Second" to="." method="_on_Second_pressed"]
+[connection signal="ready" from="Second" to="." method="_on_Second_ready"]
